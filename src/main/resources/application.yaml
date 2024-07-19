@@ -1,0 +1,30 @@
+spring:
+  application:
+    name: Spring Cloud Config Server
+
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/spring-msa/Spring-Cloud-Config-File
+          search-paths: /**
+          default-label: main
+
+  boot:
+    admin:
+      client:
+        url: ${BOOT_ADMIN_URL:http://localhost}:${PORT_ADMIN:9090}
+        instance:
+          service-url: ${HOST_URL:http://localhost}:${PORT:8888}
+
+server:
+  port: ${PORT:8888}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
